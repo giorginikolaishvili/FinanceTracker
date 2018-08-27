@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled13" %></title>
-    <%= csrf_meta_tags %>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Untitled13" %></title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
 
-    <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
+  <!-- For third-generation iPad with high-resolution Retina display: -->
+  <!-- Size should be 144 x 144 pixels -->
 
 
-    <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application" %>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
-    <![endif]-->
-  </head>
-  <body>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+  <![endif]-->
+</head>
+<body>
 
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Untitled13</a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
-        </div>
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <%= link_to 'FinanceTracker',root_path, class: 'navbar-brand'%>
+    <% if current_user %>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav col-md-6">
+          <li><%= link_to "My Portfolio", my_portfolio_path %></li>
+          <li><%= link_to "My Profile", edit_registration_path(current_user) %></li>
+          <li><%= link_to "Link3", "/path3" %></li>
+        </ul>
+        <ul class="nav navbar-right col-md-4">
+          <li class="user-name col-md-8 text-right">
+            <i class="fa fa-user"></i>
+            <%= current_user.full_name.present? ? current_user.full_name : current_user.email %>
+          </li>
+          <li class="col-md-4 logout"><%= link_to 'logout', destroy_user_session_path, class: 'btn btn-danger',
+                                                  method: :delete %></li>
+        </ul>
       </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <%= bootstrap_flash %>
+      <%= yield %>
     </div>
+  </div><!--/row-->
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-      </div><!--/row-->
+  <footer>
+    <p>&copy; Company 2018</p>
+  </footer>
 
-      <footer>
-        <p>&copy; Company 2018</p>
-      </footer>
+</div> <!-- /container -->
 
-    </div> <!-- /container -->
-
-  </body>
+</body>
 </html>

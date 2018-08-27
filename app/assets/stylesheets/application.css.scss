@@ -16,9 +16,23 @@
  */
 
 .results-block {
-    display: inline-block;
+  display: inline-block;
 }
 
 .no-padding {
-    padding: 0 !important;
+  padding: 0 !important;
 }
+
+.left-padding {
+  padding-left: 15px !important;
+}
+
+.user-name {
+  padding-top: 15px;
+}
+
+.logout {
+  margin-top: 5px;
+  padding-left: 0;
+}
+
