@@ -1,0 +1,9 @@
+<h1 align="center"> Welcome to <%= @user.full_name %>'s page! </h1>
+<h3 align="center">email : <%= @user.email %></h3>
+<hr>
+<% if @user.stocks.count > 0 %>
+  <h4 align="center" style="font-weight: bold">User's Stocks:</h4>
+  <%= render 'stocks/list' %>
+<% else %>
+  <p class="lead">this user doesn't track any stocks</p>
+<% end %>
