@@ -1,5 +1,5 @@
 class User::RegistrationsController < Devise::RegistrationsController
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
 
   protected
 
